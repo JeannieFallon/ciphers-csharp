@@ -9,9 +9,12 @@ namespace Ciphers.Controllers
     {
         public CaesarText GetCaesarText(CaesarText cText)
         {
-            char testChar = 'A';
-            cText.CipherText = "";
-            cText.CipherText += CipherService.GetCipherLetter(testChar);
+            foreach (char plnChar in cText.PlainText)
+            {
+                cText.StrBuild.Append(CipherService.GetCipherLetter(plnChar));
+            }
+
+            cText.CipherText = cText.StrBuild.ToString();
             return cText;
         }
     }

@@ -9,9 +9,12 @@ namespace Ciphers.Controllers
     {
         public Rot13Text GetRot13Text(Rot13Text rText)
         {
-            char testChar = 'A';
-            rText.CipherText = "";
-            rText.CipherText += CipherService.GetCipherLetter(testChar);
+            foreach (char plnChar in rText.PlainText)
+            {
+                rText.StrBuild.Append(CipherService.GetCipherLetter(plnChar));
+            }
+
+            rText.CipherText = rText.StrBuild.ToString();
             return rText;
         }
     }

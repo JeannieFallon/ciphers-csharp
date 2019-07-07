@@ -9,9 +9,12 @@ namespace Ciphers.Controllers
     {
         public VigenereText GetVigenereText(VigenereText vText)
         {
-            char testChar = 'A';
-            vText.CipherText = "";
-            vText.CipherText += CipherService.GetCipherLetter(testChar);
+            foreach (char plnChar in vText.PlainText)
+            {
+                vText.StrBuild.Append(CipherService.GetCipherLetter(plnChar));
+            }
+
+            vText.CipherText = vText.StrBuild.ToString();
             return vText;
         }
     }
