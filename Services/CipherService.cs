@@ -6,5 +6,9 @@ namespace Ciphers.Services
 {
     public class CipherService
     {
+        public char GetCipherLetter(char letter)
+        {
+            return 'Z';
+        }
     }
 }
