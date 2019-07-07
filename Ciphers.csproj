@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Ciphers\" />
     <Folder Include="Util\" />
   </ItemGroup>
 
