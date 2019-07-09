@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Ciphers.Util;
 
 namespace Ciphers.Models
 {
@@ -12,7 +13,7 @@ namespace Ciphers.Models
 
         static Rot13Text()
         {
-            key = 13;
+            key = CipherConstants.ROT13_SHIFT_VAL;
         }
     }
 }
