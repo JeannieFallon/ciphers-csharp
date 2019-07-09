@@ -7,13 +7,15 @@ namespace Ciphers.Models
 {
     public class Rot13Text : Text
     {
-        private static int key;
+        public int Key { get; set; }
         public Rot13Text(string plainTxt) : base(plainTxt)
-        { }
-
-        static Rot13Text()
         {
-            key = CipherConstants.ROT13_SHIFT_VAL;
+            Key = CipherConstants.ROT13_SHIFT_VAL;
         }
+
+        //static Rot13Text()
+        //{
+        //    Key = CipherConstants.ROT13_SHIFT_VAL;
+        //}
     }
 }

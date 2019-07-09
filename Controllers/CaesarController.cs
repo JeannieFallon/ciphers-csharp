@@ -11,7 +11,8 @@ namespace Ciphers.Controllers
         {
             foreach (char plnChar in cText.PlainText)
             {
-                cText.StrBuild.Append(CipherService.GetCipherLetter(plnChar));
+                int shiftVal = 1;
+                cText.StrBuild.Append(CipherService.GetCipherLetter(plnChar, shiftVal));
             }
 
             cText.CipherText = cText.StrBuild.ToString();
