@@ -9,9 +9,9 @@ namespace Ciphers.Controllers
     {
         public CaesarText GetCaesarText(CaesarText cText)
         {
+            int shiftVal = cText.Key;
             foreach (char plnChar in cText.PlainText)
             {
-                int shiftVal = 1;
                 cText.StrBuild.Append(CipherService.GetCipherLetter(plnChar, shiftVal));
             }
 
