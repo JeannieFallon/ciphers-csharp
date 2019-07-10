@@ -9,12 +9,28 @@ namespace Ciphers.Services
     {
         public char GetCipherLetter(char letter, int shiftVal)
         {
-            return 'Z';
+            int ascVal = letter;
+
+            // only shift upper- and lowercase letters
+            if (ascVal >= CipherConstants.ENG_UPPER_FLOOR 
+                && ascVal <= CipherConstants.ENG_UPPER_CEILING)
+            {
+                ascVal = GetCipherASCII(CipherConstants.ENG_UPPER_FLOOR,
+                                            ascVal, shiftVal);
+            }
+            else if (ascVal >= CipherConstants.ENG_LOWER_FLOOR
+                && ascVal <= CipherConstants.ENG_LOWER_CEILING)
+            {
+                ascVal = GetCipherASCII(CipherConstants.ENG_LOWER_FLOOR,
+                                            ascVal, shiftVal);
+            }
+
+            return (char)ascVal;
         }
 
         public int GetCipherASCII(int alphaMapVal, int ascVal, int shiftVal)
         {
-            return ascVal;
+            return ascVal+1;
         }
 
         public int GetAlphaIndex(int alphaIdx, int shiftVal)
