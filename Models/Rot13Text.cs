@@ -12,10 +12,5 @@ namespace Ciphers.Models
         {
             Key = CipherConstants.ROT13_SHIFT_VAL;
         }
-
-        //static Rot13Text()
-        //{
-        //    Key = CipherConstants.ROT13_SHIFT_VAL;
-        //}
     }
 }
