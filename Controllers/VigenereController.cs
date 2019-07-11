@@ -9,10 +9,23 @@ namespace Ciphers.Controllers
     {
         public VigenereText GetVigenereText(VigenereText vText)
         {
-            foreach (char plnChar in vText.PlainText)
+            for (int i = 0; i < vText.PlainText.Length; i++)
             {
-                int shiftVal = 1;
-                vText.StrBuild.Append(CipherService.GetCipherLetter(plnChar, shiftVal));
+                for (int j = 0; j < vText.KeyWord.Length; j++)
+                {   
+                    if (i >= vText.PlainText.Length)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        // TODO get shift vals from keyword in service
+                        vText.StrBuild.Append(CipherService.GetCipherLetter(
+                                                                vText.PlainText[i], 1));
+                    }
+
+                    i++;
+                }
             }
 
             vText.CipherText = vText.StrBuild.ToString();
