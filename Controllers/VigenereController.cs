@@ -10,8 +10,9 @@ namespace Ciphers.Controllers
         public VigenereText GetVigenereText(VigenereText vText)
         {
             List<int> shiftVals = CipherService.GetShiftVals(vText.KeyWord);
+            int i = 0;
 
-            for (int i = 0; i < vText.PlainText.Length; i++)
+            while (i < vText.PlainText.Length)
             {
                 for (int j = 0; j < shiftVals.Count; j++)
                 {   
