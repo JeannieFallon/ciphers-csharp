@@ -43,9 +43,17 @@ namespace Ciphers.Services
             return (alphaIdx + shiftVal) % CipherConstants.ENG_ALPHA_LEN;
         }
 
-        public List<int> GetShiftVals(string keyWord, int keyLen)
+        public List<int> GetShiftVals(string keyWord)
         {
             List<int> shiftVals = new List<int>();
+
+            keyWord = keyWord.ToLower();
+
+            foreach (char c in keyWord)
+            {
+                shiftVals.Add(c - CipherConstants.ENG_LOWER_FLOOR + 1);
+            }
+
             return shiftVals;
         }
     }

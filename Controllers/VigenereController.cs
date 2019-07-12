@@ -9,9 +9,11 @@ namespace Ciphers.Controllers
     {
         public VigenereText GetVigenereText(VigenereText vText)
         {
+            List<int> shiftVals = CipherService.GetShiftVals(vText.KeyWord);
+
             for (int i = 0; i < vText.PlainText.Length; i++)
             {
-                for (int j = 0; j < vText.KeyWord.Length; j++)
+                for (int j = 0; j < shiftVals.Count; j++)
                 {   
                     if (i >= vText.PlainText.Length)
                     {
@@ -19,9 +21,9 @@ namespace Ciphers.Controllers
                     }
                     else
                     {
-                        // TODO get shift vals from keyword in service
                         vText.StrBuild.Append(CipherService.GetCipherLetter(
-                                                                vText.PlainText[i], 1));
+                                                                vText.PlainText[i], 
+                                                                shiftVals[j]));
                     }
 
                     i++;
