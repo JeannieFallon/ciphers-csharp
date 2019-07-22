@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using Ciphers.Models;
 using Ciphers.Services;
 
@@ -19,15 +20,28 @@ namespace Ciphers.Controllers
 
             string plainTxt, keyWord;
             int key;
+            bool isValid;
 
             Console.WriteLine("Enter plaintext:");
             plainTxt = Console.ReadLine();
 
-            Console.WriteLine("Enter a key value for the Caesar cipher:");
-            key = int.Parse(Console.ReadLine());
+            isValid = false;
+            key = 0;
+            while (!isValid)
+            {
+                Console.WriteLine("Enter a positive integer as the key for the Caesar cipher:");
+                var input = Console.ReadLine();
+                isValid = int.TryParse(input, out key) && key > 0;
+            }
 
-            Console.WriteLine("Enter a key word for the Vigenere cipher:");
-            keyWord = Console.ReadLine();
+            isValid = false;
+            keyWord = "";
+            while (!isValid)
+            {
+                Console.WriteLine("Enter a key word for the Vigenere cipher:");
+                keyWord = Console.ReadLine();
+                isValid = Regex.IsMatch(keyWord, @"^[a-zA-Z]+$"); ;
+            }
 
             Rot13Text rot13Text = new Rot13Text(plainTxt);
             CaesarText caesarText = new CaesarText(plainTxt, key);
