@@ -16,12 +16,15 @@ namespace Ciphers.Controllers
 
         public static void Index()
         {
+            #region initialize
             Initialize();
 
             string plainTxt, keyWord;
             int key;
             bool isValid;
+            #endregion
 
+            #region input
             Console.WriteLine("Enter plaintext:");
             plainTxt = Console.ReadLine();
 
@@ -42,18 +45,19 @@ namespace Ciphers.Controllers
                 keyWord = Console.ReadLine();
                 isValid = Regex.IsMatch(keyWord, @"^[a-zA-Z]+$"); ;
             }
+            #endregion
 
-            Rot13Text rot13Text = new Rot13Text(plainTxt);
-            CaesarText caesarText = new CaesarText(plainTxt, key);
-            VigenereText vigenereText = new VigenereText(plainTxt, keyWord);
+            #region get ciphers
+            Rot13Text rot13Text = Rot13Controller.GetRot13Text(new Rot13Text(plainTxt));
+            CaesarText caesarText = CaesarController.GetCaesarText(new CaesarText(plainTxt, key));
+            VigenereText vigenereText = VigenereController.GetVigenereText(new VigenereText(plainTxt, keyWord));
+            #endregion
 
-            rot13Text = Rot13Controller.GetRot13Text(rot13Text);
-            caesarText = CaesarController.GetCaesarText(caesarText);
-            vigenereText = VigenereController.GetVigenereText(vigenereText);
-
+            #region output
             Console.WriteLine(string.Format("\nROT13:\n" + rot13Text.CipherText));
             Console.WriteLine(string.Format("\nCaesar:\n" + caesarText.CipherText));
             Console.WriteLine(string.Format("\nVigenere:\n" + vigenereText.CipherText));
+            #endregion
         }
 
         public static void Initialize()
